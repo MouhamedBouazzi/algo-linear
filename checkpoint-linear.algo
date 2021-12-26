@@ -1,0 +1,61 @@
+ALGORITHM algorithm_name
+VAR 
+    htab:HASH_TABLE<INTEGER,STRING>
+BEGIN
+    htab.insert(0,"zero")
+    htab.insert(1,"one");
+    htab.insert(2,"two");
+    htab.insert(3,"three");
+
+    htab.lookup(0); // TRUE
+    htab.lookup(5); // FALSE
+
+    htab.get(0); // "zero"
+
+    htab.delete(0);
+    END.
+
+
+    //2nd thing u told us about 
+      WHILE (c <> '#' AND NOT wrong) DO
+        Read(c);
+        SWITCH (c) DO
+            case '[': 
+            case '{': 
+            case '(': stk.push(c);
+                            state_stack := stk.peek(); // peek do not affect the stack.
+                            Write(state_stack);
+                            BREAK;
+            case ']': IF (stk.peek()='[') THEN
+                                state_stack := stk.pop(); // peek do not affect the stack.
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;
+                            END_IF  
+                            BREAK;
+            case ')': IF (stp.peek()='(') THEN
+                                state_stack := stk.pop(); // peek do not affect the stack.
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;    
+                            END_IF  
+                            BREAK;
+            case '}': IF (stp.peek()='{') THEN
+                                state_stack := stk.pop(); // peek do not affect the stack.
+                                Write(state_stack);
+                            ELSE
+                                wrong := TRUE;
+                            END_IF  
+                            BREAK;
+                            
+        END_SWITCH
+
+        
+    END_WHILE
+
+    IF (stk.isEmpty() AND NOT wrong) THEN
+        Write("Empty stack, so brackets match.");
+    ELSE
+        Write("Stack not empty, so brackets don’t match.");
+    END_IF
+  
